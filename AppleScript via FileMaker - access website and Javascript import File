@@ -1,0 +1,70 @@
+"set userClearD to \"USERNAME\"¶
+set passwordClearD to \"PASSWORD\"¶
+
+--OPEN CLEARD AND IMPORT FILE¶
+
+tell application \"Safari\"¶
+	activate¶
+	open location \"https://rvm.cleardmanager.com\"¶
+	tell application \"System Events\"¶
+		delay 2¶
+		keystroke tab¶
+		keystroke tab¶
+		keystroke userClearD¶
+		keystroke tab¶
+		keystroke passwordClearD¶
+		delay 2¶
+		keystroke return¶
+		
+	end tell¶
+	tell application \"Safari\"¶
+		tell current tab of window 1¶
+			delay 5¶
+			open location \"https://rvm.cleardmanager.com/Client/SearchClients.aspx?ReferenceNumber=0\"¶
+			delay 4¶
+			do JavaScript \"document.getElementsByClassName('dxtc')[0].children[2].click()\"¶
+			delay 2¶
+			
+			do JavaScript \"aspxTCTClick(event, 'ctl00_ContentPlaceHolder1_ASPxPageControl1', 6)\"¶
+			delay 5¶
+
+			
+			do JavaScript \"document.getElementById('ctl00_ContentPlaceHolder1_ASPxPageControl1_ImportStopsType1_fu1').click()\"¶
+
+			delay 5¶
+			tell application \"System Events\"¶
+				
+				keystroke tab using {shift down}¶
+				delay 2¶
+				keystroke tab using {shift down}¶
+				delay 2¶
+				key code 125¶
+				delay 4¶
+				keystroke tab using {shift down}¶
+				delay 2¶
+				key code 125¶
+				
+				delay 9¶
+				
+			end tell¶
+			
+			do JavaScript \"document.getElementById('ctl00_ContentPlaceHolder1_ASPxPageControl1_ImportStopsType1_fu1').click()\"¶
+			tell application \"System Events\"¶
+delay 4¶
+				keystroke \"G\" using {command down, shift down}¶
+				delay 4¶
+				keystroke \"~/Desktop/" & $FileName & ".csv\"¶
+				delay 4¶
+				keystroke return¶
+				
+				delay 2¶
+				keystroke return¶
+				
+				delay 2¶
+				
+			end tell¶
+			do JavaScript \"document.getElementById('ctl00_ContentPlaceHolder1_ASPxPageControl1_ImportStopsType1_btnUploadFilesSD').click()\"¶
+delay 2¶
+		end tell¶
+	end tell¶
+end tell"
