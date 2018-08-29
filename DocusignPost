@@ -1,0 +1,193 @@
+Let ( [
+	~result   = "text.rest.response"; // target display text which shows merge field <<$$REST.RESPONSE>>
+	~payload  = "text.json.request"; // text object which contains either json or xml for a rest call
+	~endpoint = endPointRVM &"/envelopes"; // target endpoint uri
+	~auth     = DocusignKeyRVM;
+	~method   = "POST" // GET, POST, PUT, PATCH, DELETE
+];
+		Case (
+		not PatternCount ( Get ( InstalledFMPlugins ) ; "BaseElements" );
+			Let ( $$REST.RESPONSE = "Please download and install the BaseElements plugin from http://www.goya.com.au/baseelements/plugin" ; ~result );
+
+		~method = "GET" and IsEmpty ( GetLayoutObjectAttribute ( ~payload ; "content" ) );
+			Let ( $$REST.RESPONSE = "Missing payload for POSTing." ; ~result );
+
+		//IsEmpty ( Vimeo Videos::video_id );
+		//	Let ( $$REST.RESPONSE = "Missing email for customer. Can't send!" ; ~result );
+
+		// Default operation to send GET/POST via BaseElements plug-in
+		Let ( [
+			~url = ~endpoint;
+			~POST = GetLayoutObjectAttribute ( ~payload ; "content" );
+
+
+
+			~headers = List (
+				BE_HTTP_Set_Custom_Header ( "Content-Type" ; "application/json" );
+
+
+
+				BE_HTTP_Set_Custom_Header ( "X-DocuSign-Authentication" ; ~auth );
+
+
+
+				BE_Curl_Set_Option ( "CURLOPT_CUSTOMREQUEST" ; ~method );
+
+			);
+//Headers List end
+
+           ~data = BE_HTTP_POST ( ~endpoint ; "{
+\"documents\": [
+{
+\"documentBase64\": \"" & CreditCard Sent::FileBase64 & "\",
+\"documentId\": \"" & "888" & Customers::CUSTOMER ID MATCH FIELD & "\",
+\"fileExtension\": \"pdf\",
+\"name\": \"Palmerston Moving Creditcard Authorization Client # " & Customers::CUSTOMER ID MATCH FIELD & ".pdf\"
+}
+],
+\"emailSubject\": \"Creditcard Authorization - Palmerston Moving\",
+\"recipients\": {
+\"signers\": [
+{
+\"email\": \"" & Customers::Email & "\",
+\"name\": \"" & Customers::Customer Name & "\",
+\"recipientId\": \"1\",
+\"routingOrder\": \"1\",
+
+\"tabs\": {
+
+\"radioGroupTabs\": [{
+                    \"documentId\": \"" & "888" & Customers::CUSTOMER ID MATCH FIELD & "\",
+                    \"groupName\": \"Credit Card Type\",
+                    \"radios\": [{
+                        \"pageNumber\": \"3\",
+                        \"selected\": \"true\",
+                        \"value\": \"X\",
+                        \"xPosition\": \"170\",
+                        \"yPosition\": \"430\"
+                    },
+                    {
+                        \"pageNumber\": \"3\",
+                        \"selected\": \"false\",
+                        \"xPosition\": \"319\",
+                        \"yPosition\": \"430\"
+                    },
+                    {
+                        \"pageNumber\": \"3\",
+                        \"selected\": \"false\",
+                        \"xPosition\": \"475\",
+                        \"yPosition\": \"430\"
+                    }
+                  ]
+                }],
+
+\"textTabs\": [
+   {
+        \"tabLabel\": \"Name on Card\",
+        \"locked\": \"false\",
+        \"xPosition\": \"180\",
+        \"yPosition\": \"280\",
+        \"documentId\": \"" & "888" & Customers::CUSTOMER ID MATCH FIELD & "\",
+        \"pageNumber\": \"3\"
+    },
+    {
+        \"tabLabel\": \"Billing Address\",
+        \"locked\": \"false\",
+        \"xPosition\": \"180\",
+        \"yPosition\": \"330\",
+        \"documentId\": \"" & "888" & Customers::CUSTOMER ID MATCH FIELD & "\",
+        \"pageNumber\": \"3\"
+    },
+    {
+        \"tabLabel\": \"Card Number\",
+        \"locked\": \"false\",
+        \"xPosition\": \"180\",
+        \"yPosition\": \"380\",
+        \"documentId\": \"" & "888" & Customers::CUSTOMER ID MATCH FIELD & "\",
+        \"pageNumber\": \"3\"
+    },
+    {
+        \"tabLabel\": \"Expiration Date\",
+        \"locked\": \"false\",
+        \"xPosition\": \"180\",
+        \"yPosition\": \"480\",
+        \"documentId\": \"" & "888" & Customers::CUSTOMER ID MATCH FIELD & "\",
+        \"pageNumber\": \"3\"
+    },
+    {
+        \"tabLabel\": \"Secure Code\",
+        \"locked\": \"false\",
+        \"xPosition\": \"430\",
+        \"yPosition\": \"480\",
+        \"documentId\": \"" & "888" & Customers::CUSTOMER ID MATCH FIELD & "\",
+        \"pageNumber\": \"3\"
+    },
+    {
+        \"tabLabel\": \"Applicant's Name\",
+        \"locked\": \"false\",
+        \"xPosition\": \"80\",
+        \"yPosition\": \"525\",
+        \"documentId\": \"" & "888" & Customers::CUSTOMER ID MATCH FIELD & "\",
+        \"pageNumber\": \"3\"
+    },
+    ],
+
+\"dateSignedTabs\": [
+{
+\"anchorString\": \"SIGNATURE\",
+\"anchorXOffset\": \"-400\",
+\"anchorYOffset\": \"-28\",
+\"fontSize\": \"Size12\",
+\"name\": \"Date Signed\",
+\"recipientId\": \"1\",
+\"tabLabel\": \"date_signed\"
+}
+],
+
+\"fullNameTabs\": [
+{
+\"anchorString\": \"SIGNATURE\",
+\"anchorXOffset\": \"-130\",
+\"anchorYOffset\": \"-28\",
+\"fontSize\": \"Size12\",
+\"name\": \"Full Name\",
+\"recipientId\": \"1\",
+\"tabLabel\": \"Full Name\"
+}
+],
+
+\"signHereTabs\": [
+{
+\"anchorString\": \"SIGNATURE\",
+\"anchorUnits\": \"mms\",
+\"anchorXOffset\": \"-45\",
+\"anchorYOffset\": \"-16\",
+\"name\": \"Please sign here\",
+\"optional\": \"false\",
+\"recipientId\": \"1\",
+\"scaleValue\": 1,
+\"tabLabel\": \"signer1sig\"}]}}]},\"status\": \"sent\"}"
+);
+
+//BE Http post end
+
+
+			$$REST.RESPONSE = If ( not IsEmpty ( FilterValues ( List ( "POST" ; "PUT" ; "PATCH" ) ; ~method ) );
+					BE_HTTP_POST ( ~url ;  ~POST );
+					BE_HTTP_GET ( ~url )
+				);
+			$$REST.HEADERS = BE_HTTP_Response_Headers;
+			$$REST.HEADERS.HTTPCODE = BE_HTTP_Response_Code;
+			$$REST.CURL.TRACE = If ( Get ( AccountPrivilegeSetName ) = "[Full Access]" ; BE_Curl_Trace )
+		];
+			~result
+		)
+	)
+)
+
+/*
+This code is used within a single
+step button which uses the
+Refresh Object step on a target
+piece of text.
+*/
