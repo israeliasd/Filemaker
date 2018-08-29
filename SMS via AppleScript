@@ -1,0 +1,7 @@
+"tell application \"Messages\" ¶
+	-- Create variable containing the name of how your uncle is listed in your contacts ¶
+	set theBuddy to buddy \""  & $ProfessionalFirst  &  " "  &  $ProfessionalLast  & "\" ¶
+	
+	-- Send the text. ¶
+	send \" "  & $SmsMessage  &  "\" to theBuddy ¶
+end tell"
