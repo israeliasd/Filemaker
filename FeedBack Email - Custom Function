@@ -1,0 +1,77 @@
+"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns='http://www.w3.org/1999/xhtml'><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /><title>" & Email Templates::Subject &  "</title><meta name='viewport' content='width=device-width, initial-scale=1.0'/><style> li { font-size: 13px !important; line-height: 26px !important; } small, p , li {font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', Verdana, 'sans-serif'; font-size: 14px; line-height: 20px; } small{font-size: 11px;} .header {font-size: 14px; font-weight: bold; font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', Verdana, 'sans-serif'; line-height: 10px; } .tbody { font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', Verdana, 'sans-serif'; font-size: 14px; line-height: 14px; } body { font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', Verdana, 'sans-serif'; } .bottomMenu{ color: white; text-decoration: none; font-size: 0.8em;}</style></head>
+
+<body style='margin: 20px; padding: 0; background-color:#f2f2f2;'>
+
+<table cellpadding='30' align='center' border='0' cellpadding='0' cellspacing='0' width='600'>
+<tr>
+<td align='left' bgcolor='#ffffff' style='padding: 10px 0 0px 0px; border-radius: 6px 6px 0 0;' colspa>
+<img src='http://www.palmerstonmoving.com/wp-content/uploads/2018/05/palmerston-moving-toronto.jpg' alt='Palmerston Moving' width='600' title='Palmerston Moving' style='width: 100%;' />
+</td>
+</tr>
+</table>
+<table align='center' border='0' width='600' bgcolor='#ffffff' >
+<tr><td  cellpadding='0' cellspacing='0' bgcolor='#ffffff' style='padding: 20px 30px 0px 30px;' colspan='5'>
+<p style='font-size: 13px; letter-spacing: 5px; color: #888b8d;' align='center'>How was your experience?</p>
+</td></tr>
+<tr>
+	<td width='100'></t>
+	<td width='200'><p align='center'><a href='https://search.google.com/local/writereview?placeid=ChIJT-7kawo_K4gRgQfN4DXUnEI' target='_blank' title='Good'><img src='http://www.palmerstonmoving.com/wp-content/uploads/2018/07/GOOD-REVIEW2.png' width='100' /></a></p>
+	</td>
+	<td width='200'><p align='center'><a href='http://www.palmerstonmoving.com/feedback?fieldName=" & $$WoNumber & "' target='_blank' title='Bad'><img src='http://www.palmerstonmoving.com/wp-content/uploads/2018/07/BAD-FEEDBACK2.png' width='100' /></a></p>
+	</td>
+	<td width='100'></t>
+ </tr>
+</table>
+
+
+<table  align='center' border='0' width='600' bgcolor='#e8e8e8'>
+	<tr height='10' style='padding: 0px; height: 10px;' >
+		<td width='26' height='10' style='padding: 0px; height: 10px;'></t>
+		<td width='60' height='10' style='padding: 0px; height: 10px;'><p style='color: #888b8d; font-size: 0.8em;'>Pick-up: </p>
+		</td>
+		<td width='300' height='10' style='padding: 0px; height: 10px;'><p style='color: #1a1a1a; font-size: 0.8em;'>" & $$PickupAddress & "</p>
+		</td>
+	 	<td width='20' height='10' style='padding: 0px; height: 10px;'></t>
+	</tr>
+	<tr >
+		<td width='26'></t>
+		<td width='60'><p style='color: #888b8d;  font-size: 0.8em;'>Delivery: </p>
+		</td>
+		<td width='300'><p style='color: #1a1a1a; font-size: 0.8em;'>" & $$DeliveryAddress & "</p>
+		</td>
+	 	<td width='20'></t>
+	</tr>
+</table>
+
+<table  align='center' border='0' width='600' bgcolor='#c0b69a' cellpadding='5' >
+<tr>
+  <td width='120'><p align='center' style='text-align: center;' style='color: #ffffff;'><a class='bottomMenu' href='http://www.palmerstonmoving.com/' target='_blank'>Website</a></p>
+  </td>
+  <td width='120'><p align='center' style='text-align: center;' style='color: #ffffff;'><a  class='bottomMenu' href='http://www.palmerstonmoving.com/moving/' target='_blank'>Moving</a></p>
+  </td>
+  <td width='120'><p align='center' style='text-align: center;' style='color: #ffffff;'><a  class='bottomMenu' href='http://www.palmerstonmoving.com/delivery/' target='_blank'>Delivery</a></p>
+  </td>
+  <td width='120'><p align='center' style='text-align: center;' style='color: #ffffff;'><a  class='bottomMenu' href='http://www.palmerstonmoving.com/storage/' target='_blank'>Storage</a></p>
+  </td>
+  <td width='120'><p align='center' style='text-align: center;' style='color: #ffffff;'><a  class='bottomMenu' href='http://www.palmerstonmoving.com/request/' target='_blank'>Estimates</a></p>
+  </td>
+</tr>
+</table>
+
+
+<table  align='center' border='0' width='600' bgcolor='#ffffff' style=' border-radius: 0 0 6px 6px;'>
+<tr><td  style='padding: 20px 10px 40px 10px;'>
+
+<table cellpadding='5'>
+<tr height='30'><td width='300'>
+<p align='right'><small>Trusted service partner of</small></p>
+</td>
+<td width='300'>
+<img src='http://www.palmerstonmoving.com/wp-content/uploads/2018/04/elte-mkt-gingers-trusted-delivery-service-partner-in-canada-ontario-best-movers-moving-company.gif' alt='Palmerston Moving' width='200' title='Palmerston Moving' />
+</td></tr>
+</table>
+
+<div style='width: 100%; float: left; background-image: url(\"http://www.palmerstonmoving.com/wp-content/uploads/2018/07/palmerston-moving-movers-2.png\"); background-size: 600px 103px;'><p align='center' style='font-size: 10px; line-height: 18px;'><br><strong>Copyright ©2018 Palmerston Moving - All rights reserved </strong><br><span align='center'><small  style='line-height: 18px;'>7370, Bramalea Road, Unit 33, Mississauga, ON, L5S 1N6</small></span><br><span align='center'><small  style='line-height: 18px;'>Don't want to receive our emails? <a href='mailto:customerservice@palmerstonmoving.com?body=Please UNSUBSCRIBE my email " & $$ClientEmail & " from Palmerston Moving Newsletter sent from FileMaker&subject=UNSUBSCRIBE " & $$ClientName & "' style='color: black;'>Unsubscribe here</a>. We respect your inbox. </small></span></div>
+</td></tr>
+</table>
+"
