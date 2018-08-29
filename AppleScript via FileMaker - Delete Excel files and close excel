@@ -1,0 +1,28 @@
+"
+
+#this Script closes Excel and delete files from the desktop¶
+
+
+set FileName to \"" & $FileName & "\" as string¶
+
+
+#closes Excel¶
+tell application \"Microsoft Excel\"¶
+	try¶
+		quit¶
+	end try¶
+end tell¶
+
+
+#delete files from desktop¶
+tell application \"Finder\"¶
+	
+	set file_pathCsv to ((path to desktop folder) & FileName & \".csv\") as string¶
+	set file_pathXlsx to ((path to desktop folder) & FileName & \".xlsx\") as string¶
+	try¶
+		delete file file_pathCsv¶
+		delete file file_pathXlsx¶
+	end try¶
+end tell¶
+
+"
